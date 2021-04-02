@@ -2,11 +2,26 @@ import "dotenv-safe/config";
 import "reflect-metadata";
 import { ApolloServer } from "apollo-server-express";
 import express from "express";
+import path from "path";
 import { buildSchema } from "type-graphql";
-import { PORT } from "./env";
+import { createConnection } from "typeorm";
+import { Document } from "./entities";
+import { DATABASE_URL, PORT } from "./env";
 import { HelloResolver } from "./resolvers";
 
 const main = async () => {
+  const db = await createConnection({
+    type: "postgres",
+    url: DATABASE_URL,
+    schema: "public",
+    logging: true,
+    synchronize: true,
+    entities: [Document],
+    migrations: [path.join(__dirname, "./migrations/*")]
+  });
+
+  await db.runMigrations();
+
   const app = express();
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
