@@ -1,0 +1,22 @@
+{
+  "name": "share-docs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ericraj/share-docs.git"
+  },
+  "author": "Team Share Docs",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ericraj/share-docs/issues"
+  },
+  "homepage": "https://github.com/ericraj/share-docs#readme",
+  "devDependencies": {
+    "typescript": "^4.2.3"
+  }
+}
