@@ -15,8 +15,5 @@
   "bugs": {
     "url": "https://github.com/ericraj/share-docs/issues"
   },
-  "homepage": "https://github.com/ericraj/share-docs#readme",
-  "devDependencies": {
-    "typescript": "^4.2.3"
-  }
+  "homepage": "https://github.com/ericraj/share-docs#readme"
 }
