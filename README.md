@@ -1,5 +1,20 @@
 # Share Docs
 
+## Description
+
+Share-Docs is a project which is, as its suggests, a project dedicated to document sharing, Created by the first graduates of the ISSTM (Institue Supérieur de Sience et de Téchnologie de Mahajanga)
+
+## Technology
+
+- ReactJs
+- GraphQL
+- NodeJs
+- ExpressJs
+- Typescript
+- TypeORM
+- Flutter
+- GitHub
+
 ## Backend
 
 ### Migration &middot; [Learn more about migrations](https://typeorm.io/#/migrations)
