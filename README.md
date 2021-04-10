@@ -14,6 +14,7 @@ Share-Docs is a project which is, as its suggests, a project dedicated to docume
 - TypeORM
 - Flutter
 - GitHub
+- Styled Components
 
 ## Backend
 
@@ -69,3 +70,9 @@ Suppose you start to develop a feature. Normally, you start from branch **develo
 **You can apply this process during your development. This is valid for others gitflow like hotfix or bugfix.**
 
 And dont forget to create your **Pull Request** if you finish your development :clap:
+
+## Frontend
+
+### Styles
+
+For this project, we use [styled-components](https://styled-components.com)
