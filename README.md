@@ -16,6 +16,20 @@ Share-Docs is a project which is, as its suggests, a project dedicated to docume
 - GitHub
 - Styled Components
 
+## Coding rules
+
+We use [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
+
+Here is an example of a variable declaration
+
+```javascript
+// bad
+superPower = new SuperPower();
+
+// good
+const superPower = new SuperPower();
+```
+
 ## Backend
 
 ### Migration &middot; [Learn more about migrations](https://typeorm.io/#/migrations)
@@ -36,6 +50,12 @@ Share-Docs is a project which is, as its suggests, a project dedicated to docume
 - Run `npx typeorm migration:revert`
 
 ## Git and Gitflow &middot; [Learn more about Gitflow](http://danielkummer.github.io/git-flow-cheatsheet/index.fr_FR.html)
+
+### Important
+
+:warning: Do not merge your branch into `main` branch
+
+:warning: Your branch must merge into the `develop` branch. Make sure you select `develop` branch as the target when you create your Pull Request
 
 ### Branches
 
