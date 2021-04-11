@@ -5,7 +5,7 @@ import express from "express";
 import path from "path";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
-import { Document } from "./entities";
+import { Category, Document, Tag } from "./entities";
 import { DATABASE_URL, PORT } from "./env";
 import { HelloResolver } from "./resolvers";
 
@@ -16,7 +16,7 @@ const main = async () => {
     schema: "public",
     logging: true,
     synchronize: true,
-    entities: [Document],
+    entities: [Category, Document, Tag],
     migrations: [path.join(__dirname, "./migrations/*")]
   });
 
