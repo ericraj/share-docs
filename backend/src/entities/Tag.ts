@@ -4,39 +4,28 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinTable,
   ManyToMany,
-  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Category, Tag } from ".";
+import { Document } from ".";
 
 @ObjectType()
 @Entity()
-export class Document extends BaseEntity {
+export class Tag extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field()
   @Column()
-  title: string;
+  name: string;
 
-  @Field()
-  @Column()
-  link: string;
-
-  @Field()
-  @Column()
-  categoryId: number;
-
-  @Field(() => Category)
-  @ManyToOne(() => Category, category => category.documents)
-  category: Category;
-
-  @Field(() => [Tag], { nullable: true })
-  @ManyToMany(() => Tag, tag => tag.documents)
-  tags?: Tag[];
+  @Field(() => [Document], { nullable: true })
+  @ManyToMany(() => Document, document => document.tags)
+  @JoinTable()
+  documents?: Document[];
 
   @Field(() => String)
   @CreateDateColumn()

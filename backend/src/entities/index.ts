@@ -1,3 +1,5 @@
+import { Category } from "./Category";
 import { Document } from "./Document";
+import { Tag } from "./Tag";
 
-export { Document };
+export { Category, Document, Tag };
