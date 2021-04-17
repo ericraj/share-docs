@@ -9,7 +9,8 @@
     "watch": "tsc -w",
     "gen-env": "gen-env-types .env -o src/env.d.ts -e .",
     "test": "jest",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --coverage",
+    "db:migrate": "npx typeorm migration:run"
   },
   "author": "",
   "license": "MIT",

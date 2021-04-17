@@ -5,22 +5,22 @@ import express from "express";
 import path from "path";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
-import { Category, Document, Tag } from "./entities";
+import { Category, Document, Tag, User } from "./entities";
 import { DATABASE_URL, PORT } from "./env";
 import { HelloResolver } from "./resolvers";
 
 const main = async () => {
-  const db = await createConnection({
+  await createConnection({
     type: "postgres",
     url: DATABASE_URL,
     schema: "public",
     logging: true,
-    synchronize: true,
-    entities: [Category, Document, Tag],
+    synchronize: false,
+    entities: [Category, Document, Tag, User],
     migrations: [path.join(__dirname, "./migrations/*")]
   });
 
-  await db.runMigrations();
+  // await db.runMigrations();
 
   const app = express();
   const apolloServer = new ApolloServer({
