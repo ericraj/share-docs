@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
   ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
@@ -25,7 +24,6 @@ export class Tag extends BaseEntity {
 
   @Field(() => [Document], { nullable: true })
   @ManyToMany(() => Document, document => document.tags)
-  @JoinTable()
   documents?: Document[];
 
   @Field()

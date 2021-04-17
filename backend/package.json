@@ -10,7 +10,7 @@
     "gen-env": "gen-env-types .env -o src/env.d.ts -e .",
     "test": "jest",
     "test:cov": "jest --coverage",
-    "db:migrate": "npx typeorm migration:run"
+    "db:migrate": "rm -rf dist/migrations && npm run build && npx typeorm migration:run"
   },
   "author": "",
   "license": "MIT",

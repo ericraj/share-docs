@@ -15,7 +15,7 @@ const main = async () => {
     url: DATABASE_URL,
     schema: "public",
     logging: true,
-    synchronize: false,
+    synchronize: true,
     entities: [Category, Document, Tag, User],
     migrations: [path.join(__dirname, "./migrations/*")]
   });
