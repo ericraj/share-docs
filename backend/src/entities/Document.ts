@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Category, Tag } from ".";
+import { Category, Tag, User } from ".";
 
 @ObjectType()
 @Entity()
@@ -37,6 +37,14 @@ export class Document extends BaseEntity {
   @Field(() => [Tag], { nullable: true })
   @ManyToMany(() => Tag, tag => tag.documents)
   tags?: Tag[];
+
+  @Field()
+  @Column()
+  creatorId: number;
+
+  @Field(() => User)
+  @ManyToOne(() => User, user => user.documents)
+  creator: User;
 
   @Field(() => String)
   @CreateDateColumn()

@@ -4,11 +4,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Document } from ".";
+import { Document, User } from ".";
 
 @ObjectType()
 @Entity()
@@ -24,6 +25,14 @@ export class Category extends BaseEntity {
   @Field(() => [Document])
   @OneToMany(() => Document, document => document.category)
   documents: Document[];
+
+  @Field()
+  @Column()
+  creatorId: number;
+
+  @Field(() => User)
+  @ManyToOne(() => User, user => user.categories)
+  creator: User;
 
   @Field(() => String)
   @CreateDateColumn()
