@@ -1,3 +1,4 @@
 import { HelloResolver } from "./hello";
+import { UserResolver } from "./user";
 
-export { HelloResolver };
+export { HelloResolver, UserResolver };
