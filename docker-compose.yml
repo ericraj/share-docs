@@ -1,10 +1,10 @@
-version: '3'
+version: "3"
 services:
   postgres:
     container_name: share-docs-postgres
     image: postgres:latest
     ports:
-      - '${POSTGRES_PORT:-5432}:5432'
+      - "${POSTGRES_PORT:-5432}:5432"
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-root}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-root}
@@ -15,13 +15,25 @@ services:
     container_name: share-docs-pgadmin
     image: dpage/pgadmin4
     ports:
-      - '${PGADMIN_PORT:-5050}:80'
+      - "${PGADMIN_PORT:-5050}:80"
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@sharedocs.io}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-pgadmin4}
       PGADMIN_CONFIG_SERVER_MODE: ${PGADMIN_CONFIG_SERVER_MODE:-True}
     volumes:
       - pgadmin:/root/.pgadmin
+  redis:
+    container_name: share-docs-redis
+    image: "redis:alpine"
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/var/lib/redis/data
+      - redis.conf:/usr/local/etc/redis/redis.conf
+    environment:
+      - REDIS_REPLICATION_MODE=master
 volumes:
   db-data:
   pgadmin:
+  redis-data:
+  redis.conf:

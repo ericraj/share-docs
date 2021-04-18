@@ -4,12 +4,12 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Document } from ".";
+import { Document, User } from ".";
 
 @ObjectType()
 @Entity()
@@ -24,8 +24,15 @@ export class Tag extends BaseEntity {
 
   @Field(() => [Document], { nullable: true })
   @ManyToMany(() => Document, document => document.tags)
-  @JoinTable()
   documents?: Document[];
+
+  @Field()
+  @Column()
+  creatorId: number;
+
+  @Field(() => User)
+  @ManyToOne(() => User, user => user.tags)
+  creator: User;
 
   @Field(() => String)
   @CreateDateColumn()
