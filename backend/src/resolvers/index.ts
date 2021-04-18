@@ -1,4 +1,11 @@
+import { NonEmptyArray } from "type-graphql";
 import { HelloResolver } from "./hello";
-import { UserResolver } from "./user";
+import { LoginResolver, RegisterResolver } from "./users";
 
-export { HelloResolver, UserResolver };
+const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
+  HelloResolver,
+  LoginResolver,
+  RegisterResolver
+];
+
+export default resolvers;

@@ -1,31 +1,14 @@
 import argon2 from "argon2";
-import { Arg, Ctx, Field, Mutation, ObjectType, Resolver } from "type-graphql";
+import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
 import { getConnection } from "typeorm";
-import { User } from "../entities/User";
-import { Context } from "../types";
-import { validateRegister } from "../utils/validateRegister";
-import { UserInput } from "./userInput";
-
-@ObjectType()
-class FieldError {
-  @Field()
-  field: string;
-
-  @Field()
-  message: string;
-}
-
-@ObjectType()
-class UserResponse {
-  @Field(() => [FieldError], { nullable: true })
-  errors?: FieldError[];
-
-  @Field(() => User, { nullable: true })
-  user?: User;
-}
+import { User } from "../../entities";
+import { Context } from "../../types";
+import { validateRegister } from "../../utils/validateRegister";
+import { UserResponse } from "../response";
+import { UserInput } from "../userInput";
 
 @Resolver(User)
-export class UserResolver {
+export class RegisterResolver {
   @Mutation(() => UserResponse)
   async register(@Arg("inputs") inputs: UserInput, @Ctx() { req }: Context): Promise<UserResponse> {
     const errors = validateRegister(inputs);

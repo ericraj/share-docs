@@ -10,7 +10,7 @@ import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import { Category, Document, Tag, User } from "./entities";
 import { CORS_ORIGIN, DATABASE_URL, PORT, REDIS_URL, SESSION_SECRET } from "./env";
-import { HelloResolver, UserResolver } from "./resolvers";
+import resolvers from "./resolvers";
 import { Context } from "./types";
 import cors from "cors";
 import { COOKIE_NAME, __prod__ } from "./constants";
@@ -64,7 +64,7 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, UserResolver],
+      resolvers,
       validate: false
     }),
     context: ({ req, res }): Context => ({
