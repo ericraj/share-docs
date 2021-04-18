@@ -8,7 +8,7 @@ import { UserResponse } from "../response";
 import { UserInput } from "../userInput";
 
 @Resolver(User)
-export class RegisterResolver {
+export default class RegisterResolver {
   @Mutation(() => UserResponse)
   async register(@Arg("inputs") inputs: UserInput, @Ctx() { req }: Context): Promise<UserResponse> {
     const errors = validateRegister(inputs);

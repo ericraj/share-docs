@@ -1,4 +1,5 @@
-import { LoginResolver } from "./login";
-import { RegisterResolver } from "./register";
+import LoginResolver from "./login";
+import LogoutResolver from "./logout";
+import RegisterResolver from "./register";
 
-export { RegisterResolver, LoginResolver };
+export { LoginResolver, LogoutResolver, RegisterResolver };

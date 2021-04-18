@@ -5,7 +5,7 @@ import { Context } from "../../types";
 import { UserResponse } from "../response";
 
 @Resolver(User)
-export class LoginResolver {
+export default class LoginResolver {
   @Mutation(() => UserResponse)
   async login(
     @Arg("usernameOrEmail") usernameOrEmail: string,
