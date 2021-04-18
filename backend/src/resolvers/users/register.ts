@@ -27,7 +27,8 @@ export default class RegisterResolver {
         .values({
           email: inputs.email,
           username: inputs.username,
-          password: hashedPassword
+          password: hashedPassword,
+          avatar: inputs.avatar
         })
         .returning("*")
         .execute();
