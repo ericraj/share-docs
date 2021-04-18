@@ -69,7 +69,7 @@ export class UserResolver {
     // Store user id session
     // This will set a cookie on the user
     // Keep them logged in
-    (req as any).session!.userId = user.id;
+    (req.session as any).userId = user.id;
 
     return { user };
   }

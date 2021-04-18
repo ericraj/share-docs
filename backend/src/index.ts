@@ -9,7 +9,7 @@ import path from "path";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
 import { Category, Document, Tag, User } from "./entities";
-import { DATABASE_URL, PORT, REDIS_URL, SESSION_SECRET } from "./env";
+import { CORS_ORIGIN, DATABASE_URL, PORT, REDIS_URL, SESSION_SECRET } from "./env";
 import { HelloResolver, UserResolver } from "./resolvers";
 import { Context } from "./types";
 import cors from "cors";
@@ -33,8 +33,7 @@ const main = async () => {
   // Cors
   app.use(
     cors({
-      // origin: CORS_ORIGIN,
-      origin: "*",
+      origin: CORS_ORIGIN,
       credentials: true
     })
   );
@@ -83,6 +82,7 @@ const main = async () => {
 
   app.listen(PORT, () => {
     console.log(`🚀  Server ready at http://localhost:${PORT}`);
+    console.log(`🚀  GraphQL Playground ready at http://localhost:${PORT}/graphql`);
   });
 };
 
