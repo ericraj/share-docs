@@ -2,7 +2,7 @@
 
 ## Description
 
-Share-Docs is a project which is, as its suggests, a project dedicated to document sharing, Created by the first graduates of the ISSTM (Institue Supérieur de Sience et de Téchnologie de Mahajanga)
+Share-Docs is a project which is, as its suggests, a project dedicated to document sharing, Created by the first graduates of the ISSTM (Institut Supérieur des Sciences et Technologies de Mahajanga)
 
 ## Technologies
 
@@ -30,6 +30,26 @@ superPower = new SuperPower();
 const superPower = new SuperPower();
 ```
 
+## Run the project for dev
+
+In the root directory
+
+1. Install dependencies with `npm i`
+2. Init database with `docker-compose up -d && docker-compose logs -f`
+
+### Run backend
+
+1. Go to backend folder with `cd backend`
+2. Install dependencies with `npm i`
+3. Run database migration with `npm run db:migrate`
+4. Launch server with `npm run dev`
+
+### Run frontend
+
+1. Go to frontend folder with `cd frontend`
+2. Install dependencies with `npm i`
+3. Launch server with `npm start`
+
 ## Backend
 
 ### Migration &middot; [Learn more about migrations](https://typeorm.io/#/migrations)
@@ -43,7 +63,7 @@ const superPower = new SuperPower();
 
 #### Run migration
 
-- Run `npx typeorm migration:run`
+- Run `npm run db:migrate`
 
 #### Revert migration
 
