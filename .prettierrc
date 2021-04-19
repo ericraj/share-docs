@@ -8,5 +8,13 @@
   "trailingComma": "none",
   "useTabs": false,
   "jsxSingleQuote": false,
-  "jsxBracketSameLine": true
+  "jsxBracketSameLine": true,
+  "overrides": [
+    {
+      "files": "*.yml",
+      "options": {
+        "singleQuote": true
+      }
+    }
+  ]
 }
