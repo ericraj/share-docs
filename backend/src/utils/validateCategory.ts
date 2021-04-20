@@ -1,15 +1,12 @@
 import { CategoryInput } from "../resolvers/categoryInput";
 
 export const validateCategory = (inputs: CategoryInput) => {
-  if (!inputs.name || !inputs.creatorId) {
+  if (!inputs.name) {
     let field: string = "";
     if (!inputs.name) {
       field = "name";
     }
-    if (!inputs.creatorId) {
-      field = "creatorId";
-    }
-    return [{ field, message: "Veuillez remplir tout les champ" }];
+    return [{ field, message: "Please complete all fields" }];
   }
   return null;
 };

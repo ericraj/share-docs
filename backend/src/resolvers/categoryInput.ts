@@ -4,7 +4,4 @@ import { InputType, Field } from "type-graphql";
 export class CategoryInput {
   @Field()
   name: string;
-
-  @Field()
-  creatorId: number;
 }

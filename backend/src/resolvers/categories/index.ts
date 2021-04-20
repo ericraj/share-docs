@@ -1,3 +1,3 @@
-import CategoryResolver from "./category";
+import AddCategoryResolver from "./addCategory";
 
-export { CategoryResolver };
+export { AddCategoryResolver };

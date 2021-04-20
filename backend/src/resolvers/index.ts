@@ -1,5 +1,5 @@
 import { NonEmptyArray } from "type-graphql";
-import { CategoryResolver } from "./categories";
+import { AddCategoryResolver } from "./categories/";
 import { HelloResolver } from "./hello";
 import {
   CreateTagResolver,
@@ -24,7 +24,7 @@ const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
   LoginResolver,
   LogoutResolver,
   RegisterResolver,
-  CategoryResolver
+  AddCategoryResolver
 ];
 
 export default resolvers;

@@ -1,13 +1,15 @@
 import { Category } from "../../entities/Category";
-import { Arg, Mutation, Resolver } from "type-graphql";
+import { Arg, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import { CategoryResponse } from "../response";
 import { CategoryInput } from "../categoryInput";
 import { validateCategory } from "../../utils/validateCategory";
 import { getConnection } from "typeorm";
+import { isAuth } from "../../middlewares";
 
 @Resolver(Category)
-export default class CategoryResolver {
+export default class AddCategoryResolver {
   @Mutation(() => CategoryResponse)
+  @UseMiddleware(isAuth)
   async createCategory(@Arg("inputs") inputs: CategoryInput): Promise<CategoryResponse> {
     const errors = validateCategory(inputs);
     if (errors) {
@@ -21,8 +23,7 @@ export default class CategoryResolver {
         .insert()
         .into(Category)
         .values({
-          name: inputs.name,
-          creatorId: inputs.creatorId
+          name: inputs.name
         })
         .returning("*")
         .execute();
