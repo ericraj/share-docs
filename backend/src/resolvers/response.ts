@@ -1,5 +1,5 @@
 import { Field, ObjectType } from "type-graphql";
-import { User } from "../entities";
+import { Category, User } from "../entities";
 import { FieldError } from "./error";
 
 @ObjectType()
@@ -9,4 +9,13 @@ export class UserResponse {
 
   @Field(() => User, { nullable: true })
   user?: User;
+}
+
+@ObjectType()
+export class CategoryResponse {
+  @Field(() => [FieldError], { nullable: true })
+  errors?: FieldError[];
+
+  @Field(() => Category, { nullable: true })
+  category?: Category;
 }
