@@ -1,4 +1,4 @@
-import { Field, ObjectType } from "type-graphql";
+import { Field, Int, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   Column,
@@ -15,7 +15,7 @@ import { Category, Tag, User } from ".";
 @ObjectType()
 @Entity()
 export class Document extends BaseEntity {
-  @Field()
+  @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -27,7 +27,7 @@ export class Document extends BaseEntity {
   @Column()
   link: string;
 
-  @Field()
+  @Field(() => Int)
   @Column()
   categoryId: number;
 
@@ -40,7 +40,7 @@ export class Document extends BaseEntity {
   @JoinTable()
   tags?: Tag[];
 
-  @Field()
+  @Field(() => Int)
   @Column()
   creatorId: number;
 

@@ -1,6 +1,12 @@
 import { NonEmptyArray } from "type-graphql";
 import { HelloResolver } from "./hello";
-import { CreateTagResolver, DeleteTagResolver, GetTagResolver, UpdateTagResolver } from "./tags";
+import {
+  CreateTagResolver,
+  DeleteTagResolver,
+  GetTagResolver,
+  GetTagsResolver,
+  UpdateTagResolver
+} from "./tags";
 import { LoginResolver, LogoutResolver, RegisterResolver } from "./users";
 
 const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
@@ -10,6 +16,7 @@ const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
   CreateTagResolver,
   DeleteTagResolver,
   GetTagResolver,
+  GetTagsResolver,
   UpdateTagResolver,
 
   // User
