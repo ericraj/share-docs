@@ -1,5 +1,5 @@
 import { Arg, Field, Int, ObjectType, Query, Resolver } from "type-graphql";
-import { getConnection } from "typeorm";
+import { getRepository } from "typeorm";
 import { Tag } from "../../entities";
 
 @ObjectType()
@@ -10,32 +10,26 @@ class PaginatedTags {
   @Field(() => Int)
   total: number;
 
-  @Field(() => Int)
-  page: number;
+  @Field(() => Int, { nullable: true })
+  take?: number;
 
-  @Field(() => Int)
-  skip: number;
+  @Field(() => Int, { nullable: true })
+  skip?: number;
 }
 
 @Resolver(Tag)
 export default class GetTagsResolver {
   @Query(() => PaginatedTags)
   async tags(
-    @Arg("limit", () => Int, { nullable: true }) limit: number | null,
-    @Arg("page", () => Int, { nullable: true }) page: number | null,
-    @Arg("skip", () => Int, { nullable: true }) skip: number | null
+    @Arg("take", () => Int, { nullable: true }) take: number | undefined,
+    @Arg("skip", () => Int, { nullable: true, defaultValue: 0 }) skip: number | undefined
   ): Promise<PaginatedTags> {
-    console.log(`limit, page, `, limit, page, skip);
-
-    // TODO : query for pagination
-
-    const tags = await getConnection().query(`SELECT * FROM tag`);
-
+    const tags = await getRepository(Tag).createQueryBuilder("tag").take(take).skip(skip).getMany();
     return {
       tags,
       total: await Tag.count(),
-      page: 0,
-      skip: 0
+      take,
+      skip
     };
   }
 }
