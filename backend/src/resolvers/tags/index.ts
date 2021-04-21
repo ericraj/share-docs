@@ -1,4 +1,5 @@
 import CreateTagResolver from "./createTag";
 import GetTagResolver from "./getTag";
+import UpdateTagResolver from "./updateTag";
 
-export { CreateTagResolver, GetTagResolver };
+export { CreateTagResolver, GetTagResolver, UpdateTagResolver };
