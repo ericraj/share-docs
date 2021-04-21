@@ -1,4 +1,4 @@
-import { Field, ObjectType } from "type-graphql";
+import { Field, Int, ObjectType } from "type-graphql";
 import {
   BaseEntity,
   Column,
@@ -14,7 +14,7 @@ import { Document, User } from ".";
 @ObjectType()
 @Entity()
 export class Tag extends BaseEntity {
-  @Field()
+  @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -26,7 +26,7 @@ export class Tag extends BaseEntity {
   @ManyToMany(() => Document, document => document.tags)
   documents?: Document[];
 
-  @Field()
+  @Field(() => Int)
   @Column()
   creatorId: number;
 

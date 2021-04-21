@@ -14,6 +14,7 @@ import resolvers from "./resolvers";
 import { Context } from "./types";
 import cors from "cors";
 import { COOKIE_NAME, __prod__ } from "./constants";
+import { createUserLoader } from "./utils/createUserLoader";
 
 const main = async () => {
   await createConnection({
@@ -70,7 +71,8 @@ const main = async () => {
     context: ({ req, res }): Context => ({
       req,
       res,
-      redis
+      redis,
+      userLoader: createUserLoader()
     })
   });
 
