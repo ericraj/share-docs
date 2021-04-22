@@ -1,12 +1,8 @@
-import { CategoryInput } from "../resolvers/categoryInput";
+import { CategoryInputs, UpdateCategoryInputs } from "../resolvers/categories/inputs";
 
-export const validateCategory = (inputs: CategoryInput) => {
+export const validateCategory = (inputs: CategoryInputs | UpdateCategoryInputs) => {
   if (!inputs.name) {
-    let field: string = "";
-    if (!inputs.name) {
-      field = "name";
-    }
-    return [{ field, message: "Please complete all fields" }];
+    return [{ field: "name", message: "Please complete all fields" }];
   }
   return null;
 };

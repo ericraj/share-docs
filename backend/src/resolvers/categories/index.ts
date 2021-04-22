@@ -1,3 +1,5 @@
-import AddCategoryResolver from "./addCategory";
+import CreateCategoryResolver from "./createCategory";
+import GetCategoriesResolver from "./getCategories";
+import DeleteCategoryResolver from "./deleteCategory";
 
-export { AddCategoryResolver };
+export { CreateCategoryResolver, GetCategoriesResolver, DeleteCategoryResolver };

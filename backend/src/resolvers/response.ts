@@ -19,10 +19,7 @@ export class TagResponse extends ErrorResponse {
   @Field(() => Tag, { nullable: true })
   tag?: Tag;
 }
-export class CategoryResponse {
-  @Field(() => [FieldError], { nullable: true })
-  errors?: FieldError[];
-
+export class CategoryResponse extends ErrorResponse {
   @Field(() => Category, { nullable: true })
   category?: Category;
 }
