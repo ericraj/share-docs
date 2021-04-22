@@ -1,3 +1,4 @@
+import CreateDocumentResolver from "./createDocument";
 import GetDocumentResolver from "./getDocument";
 
-export { GetDocumentResolver };
+export { CreateDocumentResolver, GetDocumentResolver };

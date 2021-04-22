@@ -1,6 +1,5 @@
 import { Field, Int, ObjectType } from "type-graphql";
-import { Tag, User } from "../entities";
-import { Category } from "../entities";
+import { Category, Document, Tag, User } from "../entities";
 import { FieldError } from "./error";
 
 @ObjectType()
@@ -37,4 +36,9 @@ export class TagResponse extends ErrorResponse {
 export class CategoryResponse extends ErrorResponse {
   @Field(() => Category, { nullable: true })
   category?: Category;
+}
+
+export class DocumentResponse extends ErrorResponse {
+  @Field(() => Document, { nullable: true })
+  document?: Document;
 }

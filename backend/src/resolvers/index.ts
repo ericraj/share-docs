@@ -6,7 +6,7 @@ import {
   GetCategoryResolver,
   UpdateCategoryResolver
 } from "./categories/";
-import { GetDocumentResolver } from "./documents";
+import { CreateDocumentResolver, GetDocumentResolver } from "./documents";
 import { HelloResolver } from "./hello";
 import {
   CreateTagResolver,
@@ -21,6 +21,7 @@ const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
   HelloResolver,
 
   // Document
+  CreateDocumentResolver,
   GetDocumentResolver,
 
   // Tag
