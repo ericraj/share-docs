@@ -25,7 +25,7 @@ const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
   LogoutResolver,
   RegisterResolver,
 
-  //Category
+  // Category
   CreateCategoryResolver
 ];
 

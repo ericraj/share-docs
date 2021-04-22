@@ -19,6 +19,8 @@ export class TagResponse extends ErrorResponse {
   @Field(() => Tag, { nullable: true })
   tag?: Tag;
 }
+
+@ObjectType()
 export class CategoryResponse extends ErrorResponse {
   @Field(() => Category, { nullable: true })
   category?: Category;
