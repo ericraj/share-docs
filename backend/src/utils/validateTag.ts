@@ -1,4 +1,4 @@
-import { TagInputs, UpdateTagInputs } from "src/resolvers/tags/inputs";
+import { TagInputs, UpdateTagInputs } from "../resolvers/tags/inputs";
 
 export const validateTag = (inputs: TagInputs | UpdateTagInputs) => {
   if (!inputs.name) {

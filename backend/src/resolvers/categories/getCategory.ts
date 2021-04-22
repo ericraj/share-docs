@@ -1,5 +1,5 @@
-import { Category, User } from "src/entities";
-import { Context } from "src/types";
+import { Category, User } from "../../entities";
+import { Context } from "../../types";
 import { Arg, Ctx, FieldResolver, Int, Query, Resolver, Root } from "type-graphql";
 
 @Resolver(Category)
