@@ -1,7 +1,7 @@
 import { Arg, Field, Int, ObjectType, Query, Resolver } from "type-graphql";
 import { getRepository } from "typeorm";
 import { Category } from "../../entities";
-import { PaginatedData } from "../response";
+import { PaginatedData } from "../types";
 
 @ObjectType()
 class PaginatedCategories extends PaginatedData {

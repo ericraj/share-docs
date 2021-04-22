@@ -4,7 +4,7 @@ import { getConnection } from "typeorm";
 import { User } from "../../entities";
 import { Context } from "../../types";
 import { validateRegister } from "../../utils/validateRegister";
-import { UserResponse } from "../response";
+import { UserResponse } from "../types";
 import { UserInput } from "../userInput";
 
 @Resolver(User)

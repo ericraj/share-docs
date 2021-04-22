@@ -4,7 +4,7 @@ import { Context } from "../../types";
 import { validateCategory } from "../../utils/validateCategory";
 import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import { getConnection } from "typeorm";
-import { CategoryResponse } from "../response";
+import { CategoryResponse } from "../types";
 import { UpdateCategoryInputs } from "./inputs";
 
 @Resolver(Category)
