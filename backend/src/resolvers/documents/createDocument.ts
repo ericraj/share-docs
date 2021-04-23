@@ -3,7 +3,7 @@ import { Document, Tag } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
 import { validateDocument } from "../../utils/validateDocument";
-import { DocumentResponse } from "../response";
+import { DocumentResponse } from "../types";
 import { DocumentInputs } from "./inputs";
 
 @Resolver(Document)

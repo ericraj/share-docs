@@ -8,7 +8,7 @@ import Redis from "ioredis";
 import path from "path";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
-import { Category, Document, Tag, User } from "./entities";
+import entities from "./entities";
 import { CORS_ORIGIN, DATABASE_URL, PORT, REDIS_URL, SESSION_SECRET } from "./env";
 import resolvers from "./resolvers";
 import { Context } from "./types";
@@ -23,7 +23,7 @@ const main = async () => {
     schema: "public",
     logging: true,
     synchronize: true,
-    entities: [Category, Document, Tag, User],
+    entities: [...entities],
     migrations: [path.join(__dirname, "./migrations/*")]
   });
 
@@ -83,8 +83,9 @@ const main = async () => {
   });
 
   app.listen(PORT, () => {
-    console.log(`🚀  Server ready at http://localhost:${PORT}`);
-    console.log(`🚀  GraphQL Playground ready at http://localhost:${PORT}/graphql`);
+    const url = `http://localhost:${PORT}`;
+    console.log(`🚀  Server ready at ${url}`);
+    console.log(`🚀  GraphQL Playground ready at ${url}/graphql`);
   });
 };
 

@@ -38,6 +38,7 @@ export class CategoryResponse extends ErrorResponse {
   category?: Category;
 }
 
+@ObjectType()
 export class DocumentResponse extends ErrorResponse {
   @Field(() => Document, { nullable: true })
   document?: Document;
