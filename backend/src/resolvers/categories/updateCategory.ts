@@ -11,7 +11,7 @@ import { UpdateCategoryInputs } from "./inputs";
 export default class UpdateCategoryResolver {
   @Mutation(() => CategoryResponse)
   @UseMiddleware(isAuth)
-  async updateTag(
+  async updateCategory(
     @Arg("inputs") inputs: UpdateCategoryInputs,
     @Ctx() { req }: Context
   ): Promise<CategoryResponse | null> {

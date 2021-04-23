@@ -7,7 +7,10 @@ import { Arg, Ctx, Int, Mutation, Resolver, UseMiddleware } from "type-graphql";
 export default class DeleteCategoryResolver {
   @Mutation(() => Boolean)
   @UseMiddleware(isAuth)
-  async deleteTag(@Arg("id", () => Int) id: number, @Ctx() { req }: Context): Promise<boolean> {
+  async deleteCategory(
+    @Arg("id", () => Int) id: number,
+    @Ctx() { req }: Context
+  ): Promise<boolean> {
     const category = await Category.findOne(id);
     if (!category) return false;
     if (category.creatorId !== (req.session as any).userId) {
