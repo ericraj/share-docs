@@ -15,6 +15,8 @@ import { Context } from "./types";
 import cors from "cors";
 import { COOKIE_NAME, __prod__ } from "./constants";
 import { createUserLoader } from "./utils/createUserLoader";
+import { createCategoryLoader } from "./utils/createCategoryLoader";
+import { createTagLoader } from "./utils/createTagLoader";
 
 const main = async () => {
   await createConnection({
@@ -72,7 +74,9 @@ const main = async () => {
       req,
       res,
       redis,
-      userLoader: createUserLoader()
+      userLoader: createUserLoader(),
+      categoryLoader: createCategoryLoader(),
+      tagLoader: createTagLoader()
     })
   });
 
