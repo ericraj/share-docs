@@ -17,25 +17,11 @@ export default class CreateDocumentResolver {
     const errors = await validateDocument(inputs);
     if (errors) return { errors };
 
-    // Check tags
     const { tagsIds } = inputs;
-    let tags: Tag[] = [];
-    if (tagsIds && tagsIds.length > 0) {
-      tags = await Tag.findByIds(tagsIds);
-      if (tags.length !== tagsIds.length) {
-        const ids = tags.map(t => t.id);
-        const diff = tagsIds.filter(id => !ids.includes(id));
-        if (diff.length > 0) {
-          return {
-            errors: [{ field: "tagsIds", message: `tag with id ${diff.join(", ")} not found` }]
-          };
-        }
-      }
-    }
 
     const document = await Document.create({
       ...inputs,
-      tags,
+      tags: tagsIds && tagsIds.length > 0 ? await Tag.findByIds(tagsIds) : [],
       creatorId: (req.session as any).userId
     }).save();
 
