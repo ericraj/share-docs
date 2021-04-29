@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 import { Document, Tag } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
+import { checkCurrentUser } from "../../utils/checkCurrentUser";
 import { validateDocument } from "../../utils/validateDocument";
 import { DocumentResponse } from "../types";
 import { UpdateDocumentInputs } from "./inputs";
@@ -30,14 +31,13 @@ export default class UpdateDocumentResolver {
       return { errors: [{ field: "id", message: "document not found" }] };
     }
 
-    // TODO : check if current user is creator user ?
+    checkCurrentUser(doc.creatorId, (req.session as any).userId);
 
     const result = await getConnection()
       .createQueryBuilder()
       .update(Document)
       .set({
         ...inputs,
-        // TODO : Check, if is not exist ADD else if tagsIds.length REMOVE
         tags: tagsIds && tagsIds.length > 0 ? await Tag.findByIds(tagsIds) : doc.tags,
         creatorId: (req.session as any).userId
       })

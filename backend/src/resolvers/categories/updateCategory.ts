@@ -18,8 +18,6 @@ export default class UpdateCategoryResolver {
     const errors = validateCategory(inputs);
     if (errors) return { errors };
 
-    // TODO : check if current user is creator user ?
-
     const result = await getConnection()
       .createQueryBuilder()
       .update(Category)

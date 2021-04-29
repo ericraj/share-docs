@@ -1,7 +1,8 @@
+import { Arg, Ctx, Int, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import { Category } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
-import { Arg, Ctx, Int, Mutation, Resolver, UseMiddleware } from "type-graphql";
+import { checkCurrentUser } from "../../utils/checkCurrentUser";
 
 @Resolver(Category)
 export default class DeleteCategoryResolver {
@@ -13,9 +14,8 @@ export default class DeleteCategoryResolver {
   ): Promise<boolean> {
     const category = await Category.findOne(id);
     if (!category) return false;
-    if (category.creatorId !== (req.session as any).userId) {
-      throw new Error("not authorized");
-    }
+
+    checkCurrentUser(category.creatorId, (req.session as any).userId)
 
     // TODO : soft delete with isRemoved field ?
 
