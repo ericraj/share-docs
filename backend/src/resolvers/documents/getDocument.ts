@@ -17,15 +17,13 @@ export default class GetDocumentResolver {
 
   @FieldResolver(() => [Tag], { nullable: true })
   async tags(@Root() document: Document, @Ctx() { tagLoader }: Context) {
-    const tagIds = await getConnection().query(
+    const tagsIds = await getConnection().query(
       `SELECT dt."tagId" FROM document_tags_tag dt WHERE dt."documentId" = ${document.id}`
     );
-    if (tagIds && tagIds.length > 0) {
-      console.log(`tagIds :>>`, tagIds);
-      return tagLoader.loadMany(tagIds.map((t: { tagId: number }) => t.tagId));
-    } else {
-      return [];
-    }
+
+    return tagsIds && tagsIds.length > 0
+      ? tagLoader.loadMany(tagsIds.map((item: { tagId: any }) => item.tagId))
+      : [];
   }
 
   @Query(() => Document, { nullable: true })

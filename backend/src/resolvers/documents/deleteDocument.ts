@@ -24,7 +24,7 @@ export default class DeleteDocumentResolver {
     if (document.tags && document.tags.length > 0) {
       await getConnection()
         .createQueryBuilder("document_tags_tag", "dt")
-        .where('dt."documentId" = :tagId AND dt."tagId" IN (:tagIds)', {
+        .where('dt."documentId" = :documentId AND dt."tagId" IN (:tagIds)', {
           documentId: id,
           tagIds: document.tags.map(t => t.id)
         })

@@ -1,6 +1,6 @@
 import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import { getConnection } from "typeorm";
-import { Document, Tag } from "../../entities";
+import { Category, Document, Tag } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
 import { checkCurrentUser } from "../../utils/checkCurrentUser";
@@ -19,35 +19,44 @@ export default class UpdateDocumentResolver {
     const errors = await validateDocument(inputs);
     if (errors) return { errors };
 
-    const { id, tagsIds } = inputs;
+    const { id, title, link, categoryId, tagsIds } = inputs;
 
     if (!id) {
       return { errors: [{ field: "id", message: "field is required" }] };
     }
 
-    const doc = await Document.findOne(id);
+    const document = await Document.findOne(id);
 
-    if (!doc) {
+    if (!document) {
       return { errors: [{ field: "id", message: "document not found" }] };
     }
 
-    checkCurrentUser(doc.creatorId, (req.session as any).userId);
+    checkCurrentUser(document.creatorId, (req.session as any).userId);
 
     const result = await getConnection()
       .createQueryBuilder()
       .update(Document)
       .set({
-        ...inputs,
-        tags: tagsIds && tagsIds.length > 0 ? await Tag.findByIds(tagsIds) : doc.tags,
-        creatorId: (req.session as any).userId
+        title,
+        link,
+        categoryId
       })
       .where('id = :id and "creatorId" = :creatorId', {
-        id: inputs.id,
+        id,
         creatorId: (req.session as any).userId
       })
       .returning("*")
       .execute();
-    const document = result.raw[0];
-    return { document };
+
+    // Update relations
+    document.category = (await Category.findOne(categoryId)) as Category;
+    if (tagsIds) {
+      if (tagsIds.length === 0) document.tags = [];
+      if (tagsIds.length > 0) document.tags = await Tag.findByIds(tagsIds);
+    }
+    await document.save();
+
+    const res = result.raw[0];
+    return { document: res };
   }
 }
