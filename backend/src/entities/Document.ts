@@ -32,7 +32,7 @@ export class Document extends BaseEntity {
   categoryId: number;
 
   @Field(() => Category)
-  @ManyToOne(() => Category, category => category.documents)
+  @ManyToOne(() => Category, category => category.documents, { onDelete: "CASCADE" })
   category: Category;
 
   @Field(() => [Tag], { nullable: true })
