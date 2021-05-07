@@ -11,10 +11,10 @@ import {
   UpdateDateColumn
 } from "typeorm";
 import { Category, Tag, User } from ".";
-import { DOCUMENTS_TAGS_TABLE_NAME } from "../constants";
+import { TABLES_NAMES } from "../constants";
 
 @ObjectType()
-@Entity()
+@Entity({ name: TABLES_NAMES.documents })
 export class Document extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -41,7 +41,11 @@ export class Document extends BaseEntity {
 
   @Field(() => [Tag], { nullable: true })
   @ManyToMany(() => Tag, tag => tag.documents, { onDelete: "CASCADE", onUpdate: "CASCADE" })
-  @JoinTable({ name: DOCUMENTS_TAGS_TABLE_NAME })
+  @JoinTable({
+    name: TABLES_NAMES.documents_tags,
+    joinColumn: { name: "documentId", referencedColumnName: "id" },
+    inverseJoinColumn: { name: "tagId", referencedColumnName: "id" }
+  })
   tags?: Tag[];
 
   @Field(() => Int)

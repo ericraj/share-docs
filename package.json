@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "db:init": "docker-compose --env-file .env up --build -d"
+    "db:init": "docker-compose --env-file .env up --build -d",
+    "db:reset": "docker-compose down && docker volume rm share-docs_db-data share-docs_pgadmin && npm run db:init"
   },
   "repository": {
     "type": "git",

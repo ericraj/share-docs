@@ -1,3 +1,4 @@
+import { TABLES_NAMES } from "../constants";
 import { Field, Int, ObjectType } from "type-graphql";
 import {
   BaseEntity,
@@ -12,7 +13,7 @@ import {
 import { Document, User } from ".";
 
 @ObjectType()
-@Entity()
+@Entity({ name: TABLES_NAMES.categories })
 export class Category extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
