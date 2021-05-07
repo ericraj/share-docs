@@ -1,6 +1,6 @@
 import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import { getConnection } from "typeorm";
-import { Category, Document, Tag } from "../../entities";
+import { Document, Tag } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
 import { checkCurrentUser } from "../../utils/checkCurrentUser";
@@ -48,13 +48,12 @@ export default class UpdateDocumentResolver {
       .returning("*")
       .execute();
 
-    // Update relations
-    document.category = (await Category.findOne(categoryId)) as Category;
+    // Update many-to-many relations
     if (tagsIds) {
       if (tagsIds.length === 0) document.tags = [];
       if (tagsIds.length > 0) document.tags = await Tag.findByIds(tagsIds);
+      await document.save();
     }
-    await document.save();
 
     const res = result.raw[0];
     return { document: res };

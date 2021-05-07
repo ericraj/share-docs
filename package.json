@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "db:init": "docker-compose --env-file .env up -d"
+    "db:init": "docker-compose --env-file .env up --build -d"
   },
   "repository": {
     "type": "git",

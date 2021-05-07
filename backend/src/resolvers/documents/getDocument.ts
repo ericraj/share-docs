@@ -1,3 +1,4 @@
+import { DOCUMENTS_TAGS_TABLE_NAME } from "../../constants";
 import { Arg, Ctx, FieldResolver, Int, Query, Resolver, Root } from "type-graphql";
 import { getConnection } from "typeorm";
 import { Category, Document, Tag, User } from "../../entities";
@@ -18,7 +19,7 @@ export default class GetDocumentResolver {
   @FieldResolver(() => [Tag], { nullable: true })
   async tags(@Root() document: Document, @Ctx() { tagLoader }: Context) {
     const tagsIds = await getConnection().query(
-      `SELECT dt."tagId" FROM document_tags_tag dt WHERE dt."documentId" = ${document.id}`
+      `SELECT dt."tagId" FROM ${DOCUMENTS_TAGS_TABLE_NAME} dt WHERE dt."documentId" = ${document.id}`
     );
 
     return tagsIds && tagsIds.length > 0

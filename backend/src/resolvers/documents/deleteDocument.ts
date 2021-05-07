@@ -1,5 +1,4 @@
 import { Arg, Ctx, Int, Mutation, Resolver, UseMiddleware } from "type-graphql";
-import { getConnection } from "typeorm";
 import { Document } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
@@ -19,17 +18,6 @@ export default class DeleteDocumentResolver {
     checkCurrentUser(document.creatorId, (req.session as any).userId);
 
     // TODO : soft delete with isRemoved field ?
-
-    // Delete document tag relations
-    if (document.tags && document.tags.length > 0) {
-      await getConnection()
-        .createQueryBuilder("document_tags_tag", "dt")
-        .where('dt."documentId" = :documentId AND dt."tagId" IN (:tagIds)', {
-          documentId: id,
-          tagIds: document.tags.map(t => t.id)
-        })
-        .delete();
-    }
 
     await Document.delete({ id });
     return true;
