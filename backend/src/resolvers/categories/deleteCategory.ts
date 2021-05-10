@@ -15,7 +15,7 @@ export default class DeleteCategoryResolver {
     const category = await Category.findOne(id);
     if (!category) return false;
 
-    checkCurrentUser(category.creatorId, (req.session as any).userId)
+    checkCurrentUser(category.creatorId, (req.session as any).userId);
 
     // TODO : soft delete with isRemoved field ?
 

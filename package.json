@@ -5,7 +5,9 @@
   "main": "index.ts",
   "scripts": {
     "db:init": "docker-compose --env-file .env up --build -d",
-    "db:reset": "docker-compose down && docker volume rm share-docs_db-data share-docs_pgadmin && npm run db:init"
+    "db:reset": "docker-compose down && docker volume rm share-docs_db-data share-docs_pgadmin && npm run db:init",
+    "prettier:run": "prettier --write **/*.{ts,js,css,html}",
+    "prettier:check": "prettier --check **/*.{ts,js,css,html}"
   },
   "repository": {
     "type": "git",
