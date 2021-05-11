@@ -6,6 +6,13 @@ import {
   GetCategoryResolver,
   UpdateCategoryResolver
 } from "./categories/";
+import {
+  CreateDocumentResolver,
+  DeleteDocumentResolver,
+  GetDocumentResolver,
+  GetDocumentsResolver,
+  UpdateDocumentResolver
+} from "./documents";
 import { HelloResolver } from "./hello";
 import {
   CreateTagResolver,
@@ -18,6 +25,13 @@ import { LoginResolver, LogoutResolver, RegisterResolver } from "./users";
 
 const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
   HelloResolver,
+
+  // Document
+  CreateDocumentResolver,
+  DeleteDocumentResolver,
+  GetDocumentResolver,
+  GetDocumentsResolver,
+  UpdateDocumentResolver,
 
   // Tag
   CreateTagResolver,

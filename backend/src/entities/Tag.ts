@@ -10,9 +10,10 @@ import {
   UpdateDateColumn
 } from "typeorm";
 import { Document, User } from ".";
+import { TABLES_NAMES } from "../constants";
 
 @ObjectType()
-@Entity()
+@Entity({ name: TABLES_NAMES.tags })
 export class Tag extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()

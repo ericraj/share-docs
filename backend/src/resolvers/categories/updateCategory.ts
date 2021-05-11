@@ -1,9 +1,10 @@
+import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
+import { getConnection } from "typeorm";
 import { Category } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
+import { checkCurrentUser } from "../../utils/checkCurrentUser";
 import { validateCategory } from "../../utils/validateCategory";
-import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
-import { getConnection } from "typeorm";
 import { CategoryResponse } from "../types";
 import { UpdateCategoryInputs } from "./inputs";
 
@@ -15,22 +16,34 @@ export default class UpdateCategoryResolver {
     @Arg("inputs") inputs: UpdateCategoryInputs,
     @Ctx() { req }: Context
   ): Promise<CategoryResponse | null> {
+    const { id, name } = inputs;
+
     const errors = validateCategory(inputs);
     if (errors) return { errors };
 
-    // TODO : check if current user is creator user ?
+    if (!id) {
+      return { errors: [{ field: "id", message: `field is required` }] };
+    }
+
+    const category = await Category.findOne(id);
+
+    if (!category) {
+      return { errors: [{ field: "id", message: `category with id ${id} not found` }] };
+    }
+
+    checkCurrentUser(category.creatorId, (req.session as any).userId);
 
     const result = await getConnection()
       .createQueryBuilder()
       .update(Category)
-      .set({ name: inputs.name })
+      .set({ name: name })
       .where('id = :id and "creatorId" = :creatorId', {
-        id: inputs.id,
+        id,
         creatorId: (req.session as any).userId
       })
       .returning("*")
       .execute();
-    const category = result.raw[0];
-    return { category };
+    const res = result.raw[0];
+    return { category: res };
   }
 }

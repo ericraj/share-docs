@@ -3,6 +3,7 @@ import { getConnection } from "typeorm";
 import { Tag } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
+import { checkCurrentUser } from "../../utils/checkCurrentUser";
 import { validateTag } from "../../utils/validateTag";
 import { TagResponse } from "../types";
 import { UpdateTagInputs } from "./inputs";
@@ -18,7 +19,13 @@ export default class UpdateTagResolver {
     const errors = validateTag(inputs);
     if (errors) return { errors };
 
-    // TODO : check if current user is creator user ?
+    const tag = await Tag.findOne(inputs.id);
+
+    if (!tag) {
+      return { errors: [{ field: "id", message: "tag not found" }] };
+    }
+
+    checkCurrentUser(tag.creatorId, (req.session as any).userId);
 
     const result = await getConnection()
       .createQueryBuilder()
@@ -30,7 +37,7 @@ export default class UpdateTagResolver {
       })
       .returning("*")
       .execute();
-    const tag = result.raw[0];
-    return { tag };
+    const res = result.raw[0];
+    return { tag: res };
   }
 }

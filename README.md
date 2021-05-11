@@ -52,6 +52,12 @@ In the root directory
 
 ## Backend
 
+### Database
+
+#### Diagram &middot; Generated with [typeorm-uml](https://github.com/eugene-manuilov/typeorm-uml)
+
+![Diagram](http://www.plantuml.com/plantuml/svg/tLLHRzem47xFhxXrqWGIYErXUwZIg1cbD9fA9vPksZIfCl4HB18RsSueA_ptsIP0ICVWQPgMIC6-xxixt_cpkLIQI5tacUUze3Xc746JKOODv2J75j2H_Mq2Sitq0ixyKU0GlpCAldD_BBW6nNxYnPlNa8XCo8jKaaNGAFtyZcK4Pxleioak6ezDU1eppEWAJ43VEPvV4JdjYumY7meQ-AyCCV0x3WlWqIRS1XdNWwmZl0pTyyntwsSCHSv_vzcxjg_np94oqfQO24ch8Rm9emXAeqIX5pDKQqEEUY9eEKcOJ3BqF2rce0MCXDOY1yfCDCq4zpmrPNn69Cb1Ye9JauEZXBSLUsQMQSE3a2Pm1L0JGiMSyHJ695DOGIQ4qxbaMYCliGgOP4GfUFB0FEz9CarTugwj2kOJfj4XePHYlZOg9Ab4v6iFqmIKDM3bcGgTHk1A94Lkf65qKeuKD86eojIcTdiEZ4Bp7A91tEltXc3CvMw0KLQ65klUXCEm6nlqSpZy6WtwLPRfpFGWoGa24g8n5N8HxMNo_UiFGR0ZIIHQo0ESJJR7GXfgougZszwdEBpz25-Y-ERkFdOM-7Otw3NUDQkBB6RqTBVLjeynILlctALbzzpeXCRP8tQi9VzWjVSAPGiAyothNGzFADWI_rZqXeWvOTbHrioSZRcH-54Y-K7CDNcKzdVRs2tLtjhedc7Ppyhy_rNHzefviCUbLPlNhg67sf7Q056zAMlOi6k8oRkxqrRBTdkvhBJvEUOaxRciUvRArkpPQoijiQtr06x7ddU9dDf_y5y0)
+
 ### Migration &middot; [Learn more about migrations](https://typeorm.io/#/migrations)
 
 - Update your entity

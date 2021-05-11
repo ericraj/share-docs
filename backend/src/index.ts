@@ -8,13 +8,15 @@ import Redis from "ioredis";
 import path from "path";
 import { buildSchema } from "type-graphql";
 import { createConnection } from "typeorm";
-import { Category, Document, Tag, User } from "./entities";
+import entities from "./entities";
 import { CORS_ORIGIN, DATABASE_URL, PORT, REDIS_URL, SESSION_SECRET } from "./env";
 import resolvers from "./resolvers";
 import { Context } from "./types";
 import cors from "cors";
 import { COOKIE_NAME, __prod__ } from "./constants";
 import { createUserLoader } from "./utils/createUserLoader";
+import { createCategoryLoader } from "./utils/createCategoryLoader";
+import { createTagLoader } from "./utils/createTagLoader";
 
 const main = async () => {
   await createConnection({
@@ -23,7 +25,7 @@ const main = async () => {
     schema: "public",
     logging: true,
     synchronize: true,
-    entities: [Category, Document, Tag, User],
+    entities: [...entities],
     migrations: [path.join(__dirname, "./migrations/*")]
   });
 
@@ -72,7 +74,9 @@ const main = async () => {
       req,
       res,
       redis,
-      userLoader: createUserLoader()
+      userLoader: createUserLoader(),
+      categoryLoader: createCategoryLoader(),
+      tagLoader: createTagLoader()
     })
   });
 
@@ -83,8 +87,9 @@ const main = async () => {
   });
 
   app.listen(PORT, () => {
-    console.log(`🚀  Server ready at http://localhost:${PORT}`);
-    console.log(`🚀  GraphQL Playground ready at http://localhost:${PORT}/graphql`);
+    const url = `http://localhost:${PORT}`;
+    console.log(`🚀  Server ready at ${url}`);
+    console.log(`🚀  GraphQL Playground ready at ${url}/graphql`);
   });
 };
 

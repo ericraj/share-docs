@@ -1,25 +1,25 @@
 import { Arg, Ctx, Int, Mutation, Resolver, UseMiddleware } from "type-graphql";
-import { Category } from "../../entities";
+import { Document } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
 import { checkCurrentUser } from "../../utils/checkCurrentUser";
 
-@Resolver(Category)
-export default class DeleteCategoryResolver {
+@Resolver(Document)
+export default class DeleteDocumentResolver {
   @Mutation(() => Boolean)
   @UseMiddleware(isAuth)
-  async deleteCategory(
+  async deleteDocument(
     @Arg("id", () => Int) id: number,
     @Ctx() { req }: Context
   ): Promise<boolean> {
-    const category = await Category.findOne(id);
-    if (!category) return false;
+    const document = await Document.findOne(id);
+    if (!document) return false;
 
-    checkCurrentUser(category.creatorId, (req.session as any).userId);
+    checkCurrentUser(document.creatorId, (req.session as any).userId);
 
     // TODO : soft delete with isRemoved field ?
 
-    await Category.delete({ id });
+    await Document.delete({ id });
     return true;
   }
 }

@@ -8,7 +8,7 @@ export default class GetTagResolver {
   creator(@Root() tag: Tag, @Ctx() { userLoader }: Context) {
     return userLoader.load(tag.creatorId);
   }
-  
+
   @Query(() => Tag, { nullable: true })
   async tag(@Arg("id", () => Int) id: number): Promise<Tag | undefined> {
     return Tag.findOne(id);
