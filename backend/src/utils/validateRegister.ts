@@ -1,4 +1,4 @@
-import { UserInput } from "../resolvers/userInput";
+import { UserInput } from "../resolvers/users/inputs";
 
 export const validateRegister = (inputs: UserInput) => {
   if (!inputs.email.includes("@")) {

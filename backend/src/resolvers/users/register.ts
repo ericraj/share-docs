@@ -5,7 +5,7 @@ import { User } from "../../entities";
 import { Context } from "../../types";
 import { validateRegister } from "../../utils/validateRegister";
 import { UserResponse } from "../types";
-import { UserInput } from "../userInput";
+import { UserInput } from "./inputs";
 
 @Resolver(User)
 export default class RegisterResolver {

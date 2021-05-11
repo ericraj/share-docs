@@ -1,7 +1,7 @@
 import argon2 from "argon2";
 import { Connection } from "typeorm";
 import { User } from "../entities";
-import { UserInput } from "../resolvers/userInput";
+import { UserInput } from "../resolvers/users/inputs";
 
 const users: UserInput[] = Array.from({ length: 10 }).map((_v, i) => {
   return {
