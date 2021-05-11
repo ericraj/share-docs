@@ -10,6 +10,7 @@ import {
   CreateDocumentResolver,
   DeleteDocumentResolver,
   GetDocumentResolver,
+  GetDocumentsResolver,
   UpdateDocumentResolver
 } from "./documents";
 import { HelloResolver } from "./hello";
@@ -29,6 +30,7 @@ const resolvers: NonEmptyArray<Function> | NonEmptyArray<string> = [
   CreateDocumentResolver,
   DeleteDocumentResolver,
   GetDocumentResolver,
+  GetDocumentsResolver,
   UpdateDocumentResolver,
 
   // Tag
