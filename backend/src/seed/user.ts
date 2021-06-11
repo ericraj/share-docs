@@ -3,15 +3,13 @@ import { Connection } from "typeorm";
 import { User } from "../entities";
 import { UserInput } from "../resolvers/users/inputs";
 
-const users: UserInput[] = Array.from({ length: 10 }).map((_v, i) => {
-  return {
-    email: `user${i + 1}@yopmail.com`,
-    password: `user${i + 1}`,
-    username: `user${i + 1}`
-  };
-});
+const users: UserInput[] = Array.from({ length: 10 }).map((_v, i) => ({
+  email: `user${i + 1}@yopmail.com`,
+  password: `user${i + 1}`,
+  username: `user${i + 1}`
+}));
 
-export const seedUser = async (connection: Connection) => {
+const seedUser = async (connection: Connection) => {
   await Promise.all(
     users.map(async user => {
       const count = await connection
@@ -37,3 +35,5 @@ export const seedUser = async (connection: Connection) => {
     })
   );
 };
+
+export default seedUser;

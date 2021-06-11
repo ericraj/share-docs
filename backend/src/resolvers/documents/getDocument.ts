@@ -1,6 +1,6 @@
-import { TABLES_NAMES } from "../../constants";
 import { Arg, Ctx, FieldResolver, Int, Query, Resolver, Root } from "type-graphql";
 import { getConnection } from "typeorm";
+import { TABLES_NAMES } from "../../constants";
 import { Category, Document, Tag, User } from "../../entities";
 import { Context } from "../../types";
 

@@ -2,7 +2,7 @@ import { Arg, Ctx, Int, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import { Category } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
-import { checkCurrentUser } from "../../utils/checkCurrentUser";
+import checkCurrentUser from "../../utils/checkCurrentUser";
 
 @Resolver(Category)
 export default class DeleteCategoryResolver {

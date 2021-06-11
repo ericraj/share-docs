@@ -10,12 +10,14 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { Category, Tag, User } from ".";
 import { TABLES_NAMES } from "../constants";
+import Category from "./Category";
+import Tag from "./Tag";
+import User from "./User";
 
 @ObjectType()
 @Entity({ name: TABLES_NAMES.documents })
-export class Document extends BaseEntity {
+export default class Document extends BaseEntity {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
   id: number;

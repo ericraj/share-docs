@@ -3,8 +3,8 @@ import { getConnection } from "typeorm";
 import { Tag } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
-import { checkCurrentUser } from "../../utils/checkCurrentUser";
-import { validateTag } from "../../utils/validateTag";
+import checkCurrentUser from "../../utils/checkCurrentUser";
+import validateTag from "../../utils/validateTag";
 import { TagResponse } from "../types";
 import { UpdateTagInputs } from "./inputs";
 

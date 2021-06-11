@@ -1,1 +1,3 @@
-export const sendEmail = () => {};
+const sendEmail = () => {};
+
+export default sendEmail;

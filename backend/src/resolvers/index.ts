@@ -5,7 +5,7 @@ import {
   GetCategoriesResolver,
   GetCategoryResolver,
   UpdateCategoryResolver
-} from "./categories/";
+} from "./categories";
 import {
   CreateDocumentResolver,
   DeleteDocumentResolver,
@@ -13,7 +13,7 @@ import {
   GetDocumentsResolver,
   UpdateDocumentResolver
 } from "./documents";
-import { HelloResolver } from "./hello";
+import HelloResolver from "./hello";
 import {
   CreateTagResolver,
   DeleteTagResolver,

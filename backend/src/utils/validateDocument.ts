@@ -2,7 +2,7 @@ import { Category, Tag } from "../entities";
 import { DocumentInputs, UpdateDocumentInputs } from "../resolvers/documents/inputs";
 import { FieldError } from "../resolvers/error";
 
-export const validateDocument = async (
+const validateDocument = async (
   inputs: DocumentInputs | UpdateDocumentInputs
 ): Promise<FieldError[] | null> => {
   const { title, link, categoryId, tagsIds } = inputs;
@@ -38,3 +38,5 @@ export const validateDocument = async (
 
   return null;
 };
+
+export default validateDocument;

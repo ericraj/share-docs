@@ -1,8 +1,8 @@
 import DataLoader from "dataloader";
-import { User } from "../entities/User";
+import { User } from "../entities";
 
-export const createUserLoader = () => {
-  return new DataLoader<number, User>(async userIds => {
+const createUserLoader = () =>
+  new DataLoader<number, User>(async userIds => {
     const users = await User.findByIds(userIds as number[]);
     const userIdToUser: Record<number, User> = {};
     users.forEach(u => {
@@ -11,4 +11,5 @@ export const createUserLoader = () => {
     const res = userIds.map(userId => userIdToUser[userId]);
     return res;
   });
-};
+
+export default createUserLoader;

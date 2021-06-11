@@ -3,8 +3,8 @@ import { getConnection } from "typeorm";
 import { Category } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
-import { checkCurrentUser } from "../../utils/checkCurrentUser";
-import { validateCategory } from "../../utils/validateCategory";
+import checkCurrentUser from "../../utils/checkCurrentUser";
+import validateCategory from "../../utils/validateCategory";
 import { CategoryResponse } from "../types";
 import { UpdateCategoryInputs } from "./inputs";
 
@@ -36,7 +36,7 @@ export default class UpdateCategoryResolver {
     const result = await getConnection()
       .createQueryBuilder()
       .update(Category)
-      .set({ name: name })
+      .set({ name })
       .where('id = :id and "creatorId" = :creatorId', {
         id,
         creatorId: (req.session as any).userId

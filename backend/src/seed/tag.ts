@@ -2,13 +2,11 @@ import faker from "faker";
 import { Connection } from "typeorm";
 import { Tag } from "../entities";
 import { TagInputs } from "../resolvers/tags/inputs";
-import { getRandomUserId } from "./helpers";
+import getRandomUserId from "./helpers";
 
-const tags: TagInputs[] = Array.from({ length: 10 }).map(() => {
-  return { name: faker.lorem.word() };
-});
+const tags: TagInputs[] = Array.from({ length: 10 }).map(() => ({ name: faker.lorem.word() }));
 
-export const seedTag = async (connection: Connection) => {
+const seedTag = async (connection: Connection) => {
   await Promise.all(
     tags.map(async tag => {
       const count = await connection
@@ -26,7 +24,7 @@ export const seedTag = async (connection: Connection) => {
         .createQueryBuilder()
         .insert()
         .into(Tag)
-        .values({ ...tag, creatorId: creatorId })
+        .values({ ...tag, creatorId })
         .returning("*")
         .execute();
       const createdTag = result.raw[0];
@@ -34,3 +32,5 @@ export const seedTag = async (connection: Connection) => {
     })
   );
 };
+
+export default seedTag;

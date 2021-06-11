@@ -1,10 +1,11 @@
 import { createConnection, getConnection } from "typeorm";
 import entities from "../entities";
 import { DATABASE_URL } from "../env";
-import { seedCategory } from "./category";
-import { seedTag } from "./tag";
-import { seedUser } from "./user";
+import seedCategory from "./category";
+import seedTag from "./tag";
+import seedUser from "./user";
 
+// eslint-disable-next-line import/prefer-default-export
 export const CONNECTION_NAME = "seed";
 
 const main = async () => {

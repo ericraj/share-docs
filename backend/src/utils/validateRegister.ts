@@ -1,6 +1,6 @@
 import { UserInput } from "../resolvers/users/inputs";
 
-export const validateRegister = (inputs: UserInput) => {
+const validateRegister = (inputs: UserInput) => {
   if (!inputs.email.includes("@")) {
     return [{ field: "email", message: "invalid email" }];
   }
@@ -19,3 +19,5 @@ export const validateRegister = (inputs: UserInput) => {
 
   return null;
 };
+
+export default validateRegister;

@@ -1,6 +1,6 @@
 import argon2 from "argon2";
 import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
-import { User } from "../../entities/User";
+import { User } from "../../entities";
 import { Context } from "../../types";
 import { UserResponse } from "../types";
 

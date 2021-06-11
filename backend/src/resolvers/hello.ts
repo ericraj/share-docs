@@ -1,8 +1,8 @@
-import { isAuth } from "../middlewares";
 import { Query, Resolver, UseMiddleware } from "type-graphql";
+import { isAuth } from "../middlewares";
 
 @Resolver()
-export class HelloResolver {
+export default class HelloResolver {
   @Query(() => String)
   @UseMiddleware(isAuth)
   hello() {

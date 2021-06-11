@@ -1,0 +1,7 @@
+node_modules/
+
+# Backend
+backend/dist/
+
+# Frontend
+frontend/web/build/

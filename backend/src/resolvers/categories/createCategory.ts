@@ -1,10 +1,10 @@
-import { Category } from "../../entities/Category";
 import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
-import { CategoryResponse } from "../types";
-import { CategoryInputs } from "./inputs";
-import { validateCategory } from "../../utils/validateCategory";
+import { Category } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
+import validateCategory from "../../utils/validateCategory";
+import { CategoryResponse } from "../types";
+import { CategoryInputs } from "./inputs";
 
 @Resolver(Category)
 export default class CreateCategoryResolver {

@@ -2,13 +2,13 @@ import faker from "faker";
 import { Connection } from "typeorm";
 import { Category } from "../entities";
 import { CategoryInputs } from "../resolvers/categories/inputs";
-import { getRandomUserId } from "./helpers";
+import getRandomUserId from "./helpers";
 
-const categories: CategoryInputs[] = Array.from({ length: 10 }).map(() => {
-  return { name: faker.lorem.word() };
-});
+const categories: CategoryInputs[] = Array.from({ length: 10 }).map(() => ({
+  name: faker.lorem.word()
+}));
 
-export const seedCategory = async (connection: Connection) => {
+const seedCategory = async (connection: Connection) => {
   await Promise.all(
     categories.map(async category => {
       const count = await connection
@@ -26,7 +26,7 @@ export const seedCategory = async (connection: Connection) => {
         .createQueryBuilder()
         .insert()
         .into(Category)
-        .values({ ...category, creatorId: creatorId })
+        .values({ ...category, creatorId })
         .returning("*")
         .execute();
       const createdCategory = result.raw[0];
@@ -34,3 +34,5 @@ export const seedCategory = async (connection: Connection) => {
     })
   );
 };
+
+export default seedCategory;

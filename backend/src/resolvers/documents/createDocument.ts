@@ -2,7 +2,7 @@ import { Arg, Ctx, Mutation, Resolver, UseMiddleware } from "type-graphql";
 import { Document, Tag } from "../../entities";
 import { isAuth } from "../../middlewares";
 import { Context } from "../../types";
-import { validateDocument } from "../../utils/validateDocument";
+import validateDocument from "../../utils/validateDocument";
 import { DocumentResponse } from "../types";
 import { DocumentInputs } from "./inputs";
 

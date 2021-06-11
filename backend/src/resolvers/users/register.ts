@@ -3,7 +3,7 @@ import { Arg, Ctx, Mutation, Resolver } from "type-graphql";
 import { getConnection } from "typeorm";
 import { User } from "../../entities";
 import { Context } from "../../types";
-import { validateRegister } from "../../utils/validateRegister";
+import validateRegister from "../../utils/validateRegister";
 import { UserResponse } from "../types";
 import { UserInput } from "./inputs";
 
@@ -32,7 +32,7 @@ export default class RegisterResolver {
         })
         .returning("*")
         .execute();
-      user = result.raw[0];
+      [user] = result.raw;
     } catch (err) {
       // Username already exist
       if (err.code === "23505") {
