@@ -10,5 +10,9 @@ declare namespace NodeJS {
     PGADMIN_CONFIG_SERVER_MODE: string;
     REDIS_PORT: string;
     REDIS_REPLICATION_MODE: string;
+    RABBITMQ_AMQP_PORT: string;
+    RABBITMQ_HTTP_PORT: string;
+    RABBITMQ_DEFAULT_USER: string;
+    RABBITMQ_DEFAULT_PASS: string;
   }
 }
