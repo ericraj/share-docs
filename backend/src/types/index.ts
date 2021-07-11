@@ -13,3 +13,9 @@ export type Context = {
   categoryLoader: ReturnType<typeof createCategoryLoader>;
   tagLoader: ReturnType<typeof createTagLoader>;
 };
+
+export type SendEmailPayload = {
+  to: string;
+  subject: string;
+  message: string;
+};

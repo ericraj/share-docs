@@ -11,5 +11,9 @@ declare namespace NodeJS {
     POSTGRES_DB: string;
     SMTP_PORT: string;
     SMTP_HOST: string;
+    AMQP_HOST: string;
+    AMQP_USER: string;
+    AMQP_PASSWORD: string;
+    AMQP_PORT: string;
   }
 }
