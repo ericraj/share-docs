@@ -1,4 +1,4 @@
-// import "dotenv-safe/config";
+require("dotenv").config();
 import amqplib, { Channel, Connection } from "amqplib/callback_api";
 import { SEND_EMAIL_QUEUE } from "../constants/rabbitmq";
 import { SendEmailPayload } from "../types";
@@ -34,7 +34,7 @@ const sendEmailPublisher = async (payload: SendEmailPayload) => {
 
           let sent = 0;
           const sendNextMessage = () => {
-            // TODO
+            // TODO ?
             if (sent >= 1) {
               console.log("All messages sent !");
               return channel.close(() => connection.close());
